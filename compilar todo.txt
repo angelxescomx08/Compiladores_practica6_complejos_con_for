@@ -1,0 +1,1 @@
+gcc -o calc complejo_cal.tab.c lex.yy.c code.c complejo_cal.c Symbol.c init.c -lm
