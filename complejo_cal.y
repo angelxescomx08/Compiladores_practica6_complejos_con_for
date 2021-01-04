@@ -47,9 +47,9 @@ stmt: exp {code((Inst)pop);}
         ($1)[1] = (Inst)$3; /* cuerpo de la iteración */
         ($1)[2] = (Inst)$4; /* terminar si la condición no se cumple */
       }
-    | for cond stmt end {
-        ($1)[1] = (Inst)$3; /* cuerpo de la iteración */
-        ($1)[2] = (Inst)$4; /* terminar si la condición no se cumple */
+    | for '(' exp end cond exp end ')' stmt end {
+        ($1)[1] = (Inst)$9; /* cuerpo de la iteración */
+        ($1)[2] = (Inst)$10; /* terminar si la condición no se cumple */
       }
     | if cond stmt end {
         ($1)[1] = (Inst)$3;
@@ -66,7 +66,7 @@ cond: exp  {code(STOP);$$=$1;}
   ;
 while: WHILE {$$= code3(whilecode,STOP,STOP);}
   ;
-for: FOR {$$= code3(whilecode,STOP,STOP);}
+for: FOR {$$= code3(forcode,STOP,STOP);}
   ;
 if: IF {$$=code(ifcode);code3(STOP,STOP,STOP);}
   ;

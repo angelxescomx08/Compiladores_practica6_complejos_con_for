@@ -4,7 +4,7 @@
 #include <stdlib.h>
 #include "complejo_cal.h"
 #include  "Symbol.h"
-#include "y.tab.h"
+#include "complejo_cal.tab.h"
 
 extern Complejo *creaComplejo(double real, double img);
 void RmWs(char* str);
